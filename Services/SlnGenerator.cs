@@ -3,8 +3,8 @@ using CodeMechanic.Diagnostics;
 using CodeMechanic.FileSystem;
 using CodeMechanic.RegularExpressions;
 using CodeMechanic.Shargs;
-using CodeMechanic.Types;
 using Sharpify.Core;
+using Sharprompt;
 
 public class SlnGenerator : QueuedService
 {
@@ -15,6 +15,31 @@ public class SlnGenerator : QueuedService
         this.arguments = arguments;
         // steps.Add(GenerateSlnx);
         steps.Add(GenerateSlnxUsingSharpify);
+        if (this.arguments.HasCommand("clean"))
+            steps.Add(Cleanup);
+    }
+
+    private async Task Cleanup()
+    {
+        string cwd = Directory.GetCurrentDirectory();
+        var conversion_files = new Grepper()
+            {
+                FileSearchMask = "*.conversion.*", Recursive = true,
+                RootPath = cwd
+            }
+            .GetFileNames();
+
+        conversion_files.Take(5).Dump(nameof(conversion_files));
+
+        bool run_cleanup = Prompt.Confirm("Clean up all .conversion files?");
+
+        if (run_cleanup)
+        {
+            foreach (var file_path in conversion_files)
+            {
+                File.Delete(file_path);
+            }
+        }
     }
 
     private async Task GenerateSlnxUsingSharpify()
@@ -22,7 +47,7 @@ public class SlnGenerator : QueuedService
         bool debug = arguments.HasFlag("--debug");
         string cwd = Directory.GetCurrentDirectory();
         var sharpify = new SharpifyService(arguments);
-        
+
         // var refactors = sharpify.GetRefactors(cwd);
         // if (debug)
         //     refactors.Dump(nameof(refactors), ignoreNulls: false);

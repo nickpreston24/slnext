@@ -1,0 +1,6 @@
+<Solution>
+    <Folder Name="/SolutionFolder/">
+        <File Path="global.json" />
+    </Folder>
+    <Project Path="ConsoleApp1\ConsoleApp1.csproj" Type="Classic C#" />
+</Solution>

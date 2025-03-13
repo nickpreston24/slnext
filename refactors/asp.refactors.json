@@ -1,0 +1,25 @@
+[
+  {
+    "extensions": "*.cshtml",
+    "save_extension": ".cshtml",
+    "save_dir": ".slnext/conversions",
+    "replacements": [
+      {
+        "enabled": true,
+        "name": "asp_dropdown_to_html_select",
+        "find": "asp:DropDownList",
+        "replacement": "select",
+        "replacements": [
+          {
+            "find": "preProject",
+            "replacement": "Kuriboh"
+          },
+          {
+            "find": "global.json",
+            "replacement": "global.BSON"
+          }
+        ]
+      }
+    ]
+  }
+]
