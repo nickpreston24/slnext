@@ -1,0 +1,19 @@
+[
+  {
+    "extensions": "*.sln",
+    "save_as_extension": ".slnx",
+    "replacements": [
+      {
+        "enabled": true,
+        "name": "convert_project_guids_to_slnx_format",
+        "find": "(?<project_definition>Project\\(\"\"\\{(?<project_guid>[A-Z\\d-]+?)\\}\"\"\\)\\s+   # Header\n=\\s+\"\"(?<project_name>.*?)\"\",\\s+    # project or solution folder are named here\n\"\"(?<project_path>[\\w+\\._\\s'\\\\]+)\"\"? ,\\s*  # path, if exists.\n\"\"\\{(?<config_guid>[A-Z\\d-]+?)\\}\"\"?        # if project has a configuration, match the guid for that config.\n)",
+        "replacements": [
+          {
+            "find": "foo",
+            "replacement": "bar"
+          }
+        ]
+      }
+    ]
+  }
+]

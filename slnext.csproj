@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+
+        <ToolCommandName>slnext</ToolCommandName>
+        <PackageOutputPath>./nupkg</PackageOutputPath>
+        <PackAsTool>True</PackAsTool>
+        <IsPackable>True</IsPackable>
+
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Watch Include="**\*.cshtml*"/>
+        <Watch Include=".env"/>
+        <Watch Include="**/*.template"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Include="**/*.template"/>
+        <Watch Include="**/*.template"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="CodeMechanic.RazorHAT" Version="1.0.1"/>
+        <PackageReference Include="CodeMechanic.Shargs" Version="1.0.4"/>
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.4.0" PrivateAssets="all"/>
+        <PackageReference Include="Serilog" Version="4.2.0"/>
+        <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0"/>
+        <PackageReference Include="Serilog.Sinks.File" Version="6.0.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="CodeMechanic.Diagnostics" Version="1.0.4"/>
+        <PackageReference Include="CodeMechanic.Embeds" Version="1.0.3"/>
+        <PackageReference Include="CodeMechanic.FileSystem" Version="2.0.12"/>
+        <PackageReference Include="CodeMechanic.Reflection" Version="1.0.4"/>
+        <PackageReference Include="CodeMechanic.RegularExpressions" Version="1.0.7"/>
+        <PackageReference Include="CodeMechanic.Types" Version="1.0.12"/>
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.3"/>
+        <PackageReference Include="Sharprompt" Version="3.0.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Sharpify.Core\Sharpify.Core.csproj"/>
+    </ItemGroup>
+
+</Project>
